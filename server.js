@@ -30,8 +30,12 @@ app.post('/api/notes', (req, res) => {
   let incommingNote = req.body;
   let newId = notes.length.toString();
 
-incommingNote.id = newId;
-notes.push(incommingNote);
+  incommingNote.id = newId;
+  notes.push(incommingNote);
+
+  fs.writeFileSync('./db/db.json', JSON.stringify(notes));
+  
+  res.json(notes);
 
 }
 );
