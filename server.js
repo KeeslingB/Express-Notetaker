@@ -26,7 +26,13 @@ app.get('*', (req, res) =>
 );
 
 app.post('/api/notes', (req, res) => {
-  //tbd
+  let notes = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
+  let incommingNote = req.body;
+  let newId = notes.length.toString();
+
+incommingNote.id = newId;
+notes.push(incommingNote);
+
 }
 );
 
