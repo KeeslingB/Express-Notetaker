@@ -1,28 +1,86 @@
 const express = require('express');
-// const mysql = require('mysql2');
-const app = express();
-const port = 3001;
 const path = require('path');
 
-const terms = require('./develop/public')
+const PORT = process.env.PORT || 3001;
 
-// app.use(express.urlencoded({ extended: false }));
-// app.use(express.json());
-
-
-
-app.use(express.static('/develop/public/index.html'));
-
-
-app.use(express.static('/notes.html'));
-
-app.get('/api/terms',(req, res) => {
-  res.json(terms);
-})
+const app = express();
 
 
 
+// Middleware for parsing JSON and urlencoded form data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
+app.use(express.static('public'));
+
+//get route for /notes
+app.get('/notes', (req, res) =>
+  res.sendFile(path.join(__dirname, '/public/notes.html'))
+);
+
+// GET Route for default route
+app.get('*', (req, res) =>
+  res.sendFile(path.join(__dirname, '/public/index.html'))
+);
+
+// GET Route for feedback page
+app.get('/feedback', (req, res) =>
+  res.sendFile(path.join(__dirname, '/public/pages/feedback.html'))
+);
+
+// Wildcard route to direct users to a 404 page
+app.get('*', (req, res) =>
+  res.sendFile(path.join(__dirname, 'public/pages/404.html'))
+);
+
+
+
+
+
+
+
+
+
+
+app.listen(PORT, () =>
+  console.log(`App listening at http://localhost:${PORT}`)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const express = require('express');
+// // const mysql = require('mysql2');
+// const app = express();
+// const port = 3001;
+// const path = require('./develop/public/assets/js/index');
+
+// const terms = require('./develop/public')
+
+// // app.use(express.urlencoded({ extended: false }));
+// // app.use(express.json());
+
+
+
+// app.use(express.static('/develop/public/index.html'));
+
+
+// app.use(express.static('/notes.html'));
+
+// app.get('/api/terms',(req, res) => {
+//   res.json(terms);
+// })
 
 
 
@@ -43,9 +101,9 @@ app.get('/api/terms',(req, res) => {
 
 // const { v4: uuid4 } = require('uuid');
 // const noteId = uuidv4();
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+// app.listen(port, () => {
+//   console.log(`Example app listening on port ${port}`)
+// })
 
 
 
