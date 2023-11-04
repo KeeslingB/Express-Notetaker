@@ -16,9 +16,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 //get route for /notes
-app.get('/notes', (req, res) =>
+app.get('/notes', (req, res) =>{
+  console.log('/notes route hit');
+  console.log('path = ', path.join(__dirname, '/public/notes.html'));
   res.sendFile(path.join(__dirname, '/public/notes.html'))
-);
+});
+
+app.get('/api/notes', (req, res) =>{
+  console.log('/api/notes route hit');
+  let notes = JSON.parse(fs.readFileSync('./db/db.json', 'utf8'));
+  console.log('path = ', path.join(__dirname, '/db/db.json'));
+  res.sendFile(path.join(__dirname, '/db/db.json'))
+});
+
+
 
 // GET Route for default route
 app.get('*', (req, res) =>
@@ -34,7 +45,7 @@ app.post('/api/notes', (req, res) => {
   notes.push(incommingNote);
 
   fs.writeFileSync('./db/db.json', JSON.stringify(notes));
-  
+
   res.json(notes);
 
 }
