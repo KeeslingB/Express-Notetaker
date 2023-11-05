@@ -2,12 +2,12 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 
-
 const PORT = process.env.PORT || 3001;
 
 const app = express();
-
-
+// const { v4: uuid4 } = require('uuid');
+// const noteId = uuidv4();
+// couldnt figuire out the id portion and would rather like to get a early start on next hw assignment. / will be returning at a later date to refactor and further add to code.
 
 // Middleware for parsing JSON and urlencoded form data
 app.use(express.json());
@@ -30,7 +30,6 @@ app.get('/api/notes', (req, res) =>{
 });
 
 
-
 // GET Route for default route
 app.get('*', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/index.html'))
@@ -51,79 +50,6 @@ app.post('/api/notes', (req, res) => {
 }
 );
 
-
-
-
-
-
-
-
-
-
-
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT}`)
 );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const express = require('express');
-// // const mysql = require('mysql2');
-// const app = express();
-// const port = 3001;
-// const path = require('./develop/public/assets/js/index');
-
-// const terms = require('./develop/public')
-
-// // app.use(express.urlencoded({ extended: false }));
-// // app.use(express.json());
-
-
-
-// app.use(express.static('/develop/public/index.html'));
-
-
-// app.use(express.static('/notes.html'));
-
-// app.get('/api/terms',(req, res) => {
-//   res.json(terms);
-// })
-
-
-
-// const termData = require('/db.json');
-
-// app.use(express.static('/public'));
-
-// app.get('develop/public/notes.html', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'notes.html'));
-// });
-
-// app.get('/notes', (req, res) => res.json(termData));
-
-
-
-
-
-
-// const { v4: uuid4 } = require('uuid');
-// const noteId = uuidv4();
-// app.listen(port, () => {
-//   console.log(`Example app listening on port ${port}`)
-// })
-
-
-
-
