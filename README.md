@@ -9,6 +9,6 @@ You can use this project by launching Server.js file in your command line and na
 
 ## Project.
 
-[Github Repo:](https://github.com/KeeslingB/express-notetaker)
+[Github Repo](https://github.com/KeeslingB/express-notetaker)
 
 Project Image: ![](./Assets/project-image.png)
